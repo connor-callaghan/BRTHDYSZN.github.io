@@ -57,13 +57,15 @@ This website is ready to be deployed on GitHub Pages!
 
 ```html
 <iframe 
-    src="https://buy.stripe.com/YOUR_PAYMENT_LINK" 
+    src="https://buy.stripe.com/test_XXXXXXXX" 
     width="100%" 
     height="400" 
     frameborder="0">
     Loading…
 </iframe>
 ```
+
+Note: Use `test_` prefix for test mode or replace with your actual live payment link.
 
 ### Updating the Lineup
 
