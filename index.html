@@ -3,83 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Music Event</title>
+    <title>Dempsey and Delta</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <h1 class="logo">Live Music Event</h1>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="tickets.html">Tickets</a></li>
-                <li><a href="registration.html">Registration</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <header class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Experience The Music</h1>
-            <p class="hero-subtitle">An Unforgettable Live Music Event</p>
-            <p class="event-date">Coming Soon</p>
-            <a href="registration.html" class="cta-button">Register Now</a>
-        </div>
-    </header>
-
-    <section class="lineup-section">
-        <div class="container">
-            <h2 class="section-title">Lineup</h2>
-            <p class="lineup-announcement">Stay tuned! Our amazing lineup will be announced soon.</p>
-            
-            <!-- Lineup will be added here -->
-            <div class="lineup-grid" id="lineup">
-                <!-- Artists will be added here as they are announced -->
-                <div class="artist-card placeholder">
-                    <div class="artist-name">Artist TBA</div>
-                    <div class="artist-time">Time TBA</div>
+<body class="snap-site">
+    <main class="snap-container">
+        <section id="home" class="snap-panel hero-panel">
+            <div class="hero-brand">
+                <p class="hero-brand-text">name, name, name and name's</p>
+            </div>
+            <div class="hero-layout">
+                <div class="hero-title-wrap">
+                    <h1 class="hero-display-title">30th Birthday</h1>
                 </div>
-                <div class="artist-card placeholder">
-                    <div class="artist-name">Artist TBA</div>
-                    <div class="artist-time">Time TBA</div>
-                </div>
-                <div class="artist-card placeholder">
-                    <div class="artist-name">Artist TBA</div>
-                    <div class="artist-time">Time TBA</div>
+                <div class="hero-content-wrap">
+                    <div class="hero-dot-grid" aria-hidden="true"></div>
+                    <p class="hero-description">Increase company profits and reduce overhead costs by transforming your business online.</p>
+                    <p class="hero-date">SEPTEMBER 17, 2025 AT 10:00 AM EST</p>
+                    <a class="hero-outline-link" href="#register">LEARN MORE</a>
+                    <div class="hero-socials">
+                        <a href="#" aria-label="Instagram">IG</a>
+                        <a href="#" aria-label="Facebook">FB</a>
+                        <a href="#" aria-label="Twitter">X</a>
+                        <a href="mailto:hello@example.com" aria-label="Email">MAIL</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+            <a class="snap-next" href="#register" aria-label="Scroll to registration">SCROLL</a>
+        </section>
 
-    <section class="info-section">
-        <div class="container">
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3>📍 Venue</h3>
-                    <p>Location TBA</p>
+        <section id="register" class="snap-panel registration-panel">
+            <div class="registration-layout">
+                <div class="registration-intro">
+                    <p class="registration-kicker">Dempsey and Delta</p>
+                    <h2 class="registration-display-title">EVENT REGISTRATION</h2>
+                    <p class="registration-intro-text">Reserve your spot for this session and get practical digital growth strategies tailored to small businesses.</p>
+                    <a class="registration-outline-link" href="#home">BACK TO TOP</a>
                 </div>
-                <div class="info-card">
-                    <h3>📅 Date</h3>
-                    <p>Date TBA</p>
-                </div>
-                <div class="info-card">
-                    <h3>🎫 Tickets</h3>
-                    <p>Available Now</p>
-                    <a href="tickets.html" class="info-link">Buy Tickets</a>
-                </div>
-                <div class="info-card">
-                    <h3>📝 Registration</h3>
-                    <p>Sign up with your contact details</p>
-                    <a href="registration.html" class="info-link">Register</a>
+                <div class="registration-card">
+                    <h2>Register</h2>
+                    <p class="registration-helper-text">Fill out the form below to lock in your seat.</p>
+                    <form id="registration-form" class="registration-form" action="https://docs.google.com/forms/d/e/1FAIpQLScUS_Hb3W0_gZkwmhb2JpAQEoRyXeSAfsURMI72lQWbX5JDjg/formResponse" method="POST" target="hidden_iframe">
+                        <input id="google-email-address" name="emailAddress" type="hidden">
+                        <input name="fvv" type="hidden" value="1">
+                        <input name="pageHistory" type="hidden" value="0">
+                        <div class="form-field">
+                            <label for="first-name">First Name</label>
+                            <input id="first-name" name="entry.2005620554" type="text" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="last-name">Last Name</label>
+                            <input id="last-name" name="entry.1314266813" type="text" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="email-address">Email Address</label>
+                            <input id="email-address" name="entry.904923101" type="email" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="phone-number">Phone Number</label>
+                            <input id="phone-number" name="entry.1166974658" type="tel">
+                        </div>
+                        <button type="submit" class="registration-submit">SUBMIT REGISTRATION</button>
+                    </form>
+                    <p id="registration-message" class="registration-message" aria-live="polite"></p>
+                    <iframe name="hidden_iframe" title="hidden registration target" class="hidden-iframe"></iframe>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Live Music Event. All rights reserved.</p>
-        </div>
-    </footer>
+    <script>
+        const registrationForm = document.getElementById('registration-form');
+        const emailInput = document.getElementById('email-address');
+        const registrationMessage = document.getElementById('registration-message');
+        const googleEmailAddressInput = document.getElementById('google-email-address');
+        const hiddenIframe = document.querySelector('iframe[name="hidden_iframe"]');
+        let isAwaitingSubmitResult = false;
+        let pendingSubmitTimer = null;
+
+        registrationForm.addEventListener('submit', function (event) {
+            const hasEmail = emailInput.value.trim().length > 0;
+            if (!hasEmail) {
+                event.preventDefault();
+                registrationMessage.textContent = 'Please provide an email address.';
+                registrationMessage.className = 'registration-message error';
+                return;
+            }
+            googleEmailAddressInput.value = emailInput.value.trim();
+            isAwaitingSubmitResult = true;
+            window.clearTimeout(pendingSubmitTimer);
+            registrationMessage.textContent = 'Submitting...';
+            registrationMessage.className = 'registration-message';
+            pendingSubmitTimer = window.setTimeout(function () {
+                if (!isAwaitingSubmitResult) {
+                    return;
+                }
+                isAwaitingSubmitResult = false;
+                registrationMessage.textContent = 'We could not confirm your submission. Please try again.';
+                registrationMessage.className = 'registration-message error';
+            }, 8000);
+        });
+
+        hiddenIframe.addEventListener('load', function () {
+            if (!isAwaitingSubmitResult) {
+                return;
+            }
+            isAwaitingSubmitResult = false;
+            window.clearTimeout(pendingSubmitTimer);
+            registrationMessage.textContent = 'Registration submitted. Thank you!';
+            registrationMessage.className = 'registration-message success';
+            window.setTimeout(function () {
+                registrationForm.reset();
+            }, 300);
+        });
+    </script>
 </body>
 </html>
