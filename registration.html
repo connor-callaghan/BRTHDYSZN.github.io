@@ -28,7 +28,7 @@
     <section class="registration-content">
         <div class="registration-card">
             <h2>Register</h2>
-            <p class="registration-helper-text">Submit your details to our Google Sheet.</p>
+            <p class="registration-helper-text">Fill out the form below to register for the event.</p>
             <form id="registration-form" class="registration-form" action="https://docs.google.com/forms/d/e/1FAIpQLScUS_Hb3W0_gZkwmhb2JpAQEoRyXeSAfsURMI72lQWbX5JDjg/formResponse" method="POST" target="hidden_iframe">
                 <input id="google-email-address" name="emailAddress" type="hidden">
                 <input name="fvv" type="hidden" value="1">
@@ -52,10 +52,6 @@
                 <button type="submit" class="cta-button registration-submit">Submit Registration</button>
             </form>
             <p id="registration-message" class="registration-message" aria-live="polite"></p>
-            <div class="registration-setup">
-                <h3>Google Form connected</h3>
-                <p>This page now submits directly to your live Google Form and linked Google Sheet.</p>
-            </div>
             <iframe name="hidden_iframe" title="hidden registration target" class="hidden-iframe"></iframe>
         </div>
     </section>
@@ -71,6 +67,9 @@
         const emailInput = document.getElementById('email-address');
         const registrationMessage = document.getElementById('registration-message');
         const googleEmailAddressInput = document.getElementById('google-email-address');
+        const hiddenIframe = document.querySelector('iframe[name="hidden_iframe"]');
+        let isAwaitingSubmitResult = false;
+        let pendingSubmitTimer = null;
 
         registrationForm.addEventListener('submit', function (event) {
             const hasEmail = emailInput.value.trim().length > 0;
@@ -81,11 +80,31 @@
                 return;
             }
             googleEmailAddressInput.value = emailInput.value.trim();
+            isAwaitingSubmitResult = true;
+            window.clearTimeout(pendingSubmitTimer);
+            registrationMessage.textContent = 'Submitting...';
+            registrationMessage.className = 'registration-message';
+            pendingSubmitTimer = window.setTimeout(function () {
+                if (!isAwaitingSubmitResult) {
+                    return;
+                }
+                isAwaitingSubmitResult = false;
+                registrationMessage.textContent = 'We could not confirm your submission. Please try again.';
+                registrationMessage.className = 'registration-message error';
+            }, 8000);
+        });
+
+        hiddenIframe.addEventListener('load', function () {
+            if (!isAwaitingSubmitResult) {
+                return;
+            }
+            isAwaitingSubmitResult = false;
+            window.clearTimeout(pendingSubmitTimer);
             registrationMessage.textContent = 'Registration submitted. Thank you!';
             registrationMessage.className = 'registration-message success';
-            setTimeout(function () {
+            window.setTimeout(function () {
                 registrationForm.reset();
-            }, 200);
+            }, 300);
         });
     </script>
 </body>
