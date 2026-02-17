@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration - Live Music Event</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">Live Music Event</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tickets.html">Tickets</a></li>
+                <li><a href="registration.html" class="active">Registration</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="tickets-hero">
+        <div class="hero-content">
+            <h1>Event Registration</h1>
+            <p>Register your details and we will contact you with updates.</p>
+        </div>
+    </header>
+
+    <section class="registration-content">
+        <div class="registration-card">
+            <h2>Register</h2>
+            <p class="registration-helper-text">Submit your details to our Google Sheet.</p>
+            <form id="registration-form" class="registration-form" action="https://docs.google.com/forms/d/e/1FAIpQLScUS_Hb3W0_gZkwmhb2JpAQEoRyXeSAfsURMI72lQWbX5JDjg/formResponse" method="POST" target="hidden_iframe">
+                <div class="form-field">
+                    <label for="first-name">First Name</label>
+                    <input id="first-name" name="entry.2005620554" type="text" required>
+                </div>
+                <div class="form-field">
+                    <label for="last-name">Last Name</label>
+                    <input id="last-name" name="entry.1314266813" type="text" required>
+                </div>
+                <div class="form-field">
+                    <label for="email-address">Email Address</label>
+                    <input id="email-address" name="entry.904923101" type="email">
+                </div>
+                <div class="form-field">
+                    <label for="phone-number">Phone Number</label>
+                    <input id="phone-number" name="entry.1166974658" type="tel">
+                </div>
+                <button type="submit" class="cta-button registration-submit">Submit Registration</button>
+            </form>
+            <p id="registration-message" class="registration-message" aria-live="polite"></p>
+            <div class="registration-setup">
+                <h3>Google Form connected</h3>
+                <p>This page now submits directly to your live Google Form and linked Google Sheet.</p>
+            </div>
+            <iframe name="hidden_iframe" title="hidden registration target" class="hidden-iframe"></iframe>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Live Music Event. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const registrationForm = document.getElementById('registration-form');
+        const emailInput = document.getElementById('email-address');
+        const phoneInput = document.getElementById('phone-number');
+        const registrationMessage = document.getElementById('registration-message');
+
+        registrationForm.addEventListener('submit', function (event) {
+            const hasEmail = emailInput.value.trim().length > 0;
+            const hasPhone = phoneInput.value.trim().length > 0;
+            if (!hasEmail && !hasPhone) {
+                event.preventDefault();
+                registrationMessage.textContent = 'Please provide an email address or phone number.';
+                registrationMessage.className = 'registration-message error';
+                return;
+            }
+            registrationMessage.textContent = 'Registration submitted. Thank you!';
+            registrationMessage.className = 'registration-message success';
+            setTimeout(function () {
+                registrationForm.reset();
+            }, 200);
+        });
+    </script>
+</body>
+</html>

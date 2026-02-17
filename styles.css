@@ -324,6 +324,104 @@ body {
     color: #764ba2;
 }
 
+/* Registration Page */
+.registration-content {
+    padding: 60px 20px;
+    background: white;
+}
+
+.registration-card {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #f9fafb;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.registration-card h2 {
+    color: #667eea;
+    margin-bottom: 0.75rem;
+    font-size: 2rem;
+}
+
+.registration-helper-text {
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.registration-form {
+    display: grid;
+    gap: 1rem;
+}
+
+.form-field {
+    display: grid;
+    gap: 0.4rem;
+}
+
+.form-field label {
+    color: #2d3748;
+    font-weight: 600;
+}
+
+.form-field input {
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    padding: 0.75rem 0.9rem;
+    font-size: 1rem;
+}
+
+.form-field input:focus {
+    border-color: #667eea;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(102,126,234,0.2);
+}
+
+.registration-submit {
+    border: none;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}
+
+.registration-message {
+    margin-top: 1rem;
+    font-weight: 600;
+    min-height: 1.5rem;
+}
+
+.registration-message.success {
+    color: #2f855a;
+}
+
+.registration-message.error {
+    color: #c53030;
+}
+
+.registration-setup {
+    margin-top: 1rem;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.registration-setup h3 {
+    color: #667eea;
+    margin-bottom: 0.5rem;
+}
+
+.registration-setup code {
+    background: #f3f4f6;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    color: #764ba2;
+}
+
+.hidden-iframe {
+    display: none;
+}
+
 /* Footer */
 .footer {
     background: #2d3748;
