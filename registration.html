@@ -30,6 +30,9 @@
             <h2>Register</h2>
             <p class="registration-helper-text">Submit your details to our Google Sheet.</p>
             <form id="registration-form" class="registration-form" action="https://docs.google.com/forms/d/e/1FAIpQLScUS_Hb3W0_gZkwmhb2JpAQEoRyXeSAfsURMI72lQWbX5JDjg/formResponse" method="POST" target="hidden_iframe">
+                <input id="google-email-address" name="emailAddress" type="hidden">
+                <input name="fvv" type="hidden" value="1">
+                <input name="pageHistory" type="hidden" value="0">
                 <div class="form-field">
                     <label for="first-name">First Name</label>
                     <input id="first-name" name="entry.2005620554" type="text" required>
@@ -68,6 +71,7 @@
         const emailInput = document.getElementById('email-address');
         const phoneInput = document.getElementById('phone-number');
         const registrationMessage = document.getElementById('registration-message');
+        const googleEmailAddressInput = document.getElementById('google-email-address');
 
         registrationForm.addEventListener('submit', function (event) {
             const hasEmail = emailInput.value.trim().length > 0;
@@ -78,6 +82,7 @@
                 registrationMessage.className = 'registration-message error';
                 return;
             }
+            googleEmailAddressInput.value = emailInput.value.trim();
             registrationMessage.textContent = 'Registration submitted. Thank you!';
             registrationMessage.className = 'registration-message success';
             setTimeout(function () {
