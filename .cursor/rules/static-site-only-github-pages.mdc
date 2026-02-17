@@ -1,0 +1,27 @@
+---
+description: Enforce static-only architecture for GitHub Pages hosting
+alwaysApply: true
+---
+
+# Static Site Only (GitHub Pages)
+
+This project must remain a static site deployable on GitHub Pages with no paid hosting requirements.
+
+## Allowed
+
+- Static assets and pages: HTML, CSS, client-side JavaScript, images, fonts, and static JSON/data files.
+- Build-time only tooling that outputs static files (for local development or pre-deploy generation).
+- GitHub Pages compatible deployment output.
+
+## Not Allowed
+
+- Any backend/server runtime code (Node servers, Express, APIs, Python/PHP/Ruby/Go servers, serverless functions).
+- Databases or runtime data stores requiring hosted infrastructure.
+- Features that require paid hosting services to function.
+- Any architecture requiring a persistent process after deploy.
+
+## Implementation Guidance
+
+- Prefer client-side integrations with third-party services only when they work without running your own backend.
+- If a requested feature needs a server, propose a static-friendly alternative first.
+- Keep all changes compatible with direct static hosting on `github.io`.
