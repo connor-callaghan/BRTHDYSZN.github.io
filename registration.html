@@ -43,7 +43,7 @@
                 </div>
                 <div class="form-field">
                     <label for="email-address">Email Address</label>
-                    <input id="email-address" name="entry.904923101" type="email">
+                    <input id="email-address" name="entry.904923101" type="email" required>
                 </div>
                 <div class="form-field">
                     <label for="phone-number">Phone Number</label>
@@ -69,16 +69,14 @@
     <script>
         const registrationForm = document.getElementById('registration-form');
         const emailInput = document.getElementById('email-address');
-        const phoneInput = document.getElementById('phone-number');
         const registrationMessage = document.getElementById('registration-message');
         const googleEmailAddressInput = document.getElementById('google-email-address');
 
         registrationForm.addEventListener('submit', function (event) {
             const hasEmail = emailInput.value.trim().length > 0;
-            const hasPhone = phoneInput.value.trim().length > 0;
-            if (!hasEmail && !hasPhone) {
+            if (!hasEmail) {
                 event.preventDefault();
-                registrationMessage.textContent = 'Please provide an email address or phone number.';
+                registrationMessage.textContent = 'Please provide an email address.';
                 registrationMessage.className = 'registration-message error';
                 return;
             }
