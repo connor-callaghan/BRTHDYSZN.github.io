@@ -2,11 +2,218 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=index.html#register">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
+    <title>Register - 30th Birthday Party</title>
+    <link rel="stylesheet" href="styles.css">
+    <script async src="https://js.stripe.com/v3/buy-button.js"></script>
 </head>
 <body>
-    <p>Redirecting to registration...</p>
+    <header class="site-header">
+        <nav class="site-nav">
+            <a class="site-nav-link" href="index.html">Home</a>
+            <a class="site-nav-link site-nav-link--active" href="registration.html">Register</a>
+        </nav>
+    </header>
+    <main>
+        <section id="register" class="registration-panel registration-panel--standalone">
+            <div class="registration-layout">
+                <div class="registration-intro">
+                    <h2 class="registration-display-title">EVENT REGISTRATION</h2>
+                    <p class="registration-intro-text">Enter your contact details below so we can contact you with the location and other event details closer to the date.</p>
+                    <a class="registration-outline-link" href="index.html">BACK TO HOME</a>
+                </div>
+                <div class="registration-card">
+                    <div class="step-indicator">
+                        <div class="step-dot step-dot--active" data-step="0"></div>
+                        <div class="step-dot" data-step="1"></div>
+                        <div class="step-dot" data-step="2"></div>
+                    </div>
+                    <form id="registration-form" class="registration-form" action="https://docs.google.com/forms/d/e/1FAIpQLScUS_Hb3W0_gZkwmhb2JpAQEoRyXeSAfsURMI72lQWbX5JDjg/formResponse" method="POST" target="hidden_iframe" novalidate>
+                        <input id="google-email-address" name="emailAddress" type="hidden">
+                        <input id="donated-field" name="entry.911388807" type="hidden">
+                        <input name="fvv" type="hidden" value="1">
+                        <input name="pageHistory" type="hidden" value="0">
+                        <div id="step-details" class="form-step">
+                            <h2>Register</h2>
+                            <p class="registration-helper-text">Fill out the form below to lock in your seat.</p>
+                            <div class="form-field">
+                                <label for="first-name">First Name</label>
+                                <input id="first-name" name="entry.2005620554" type="text" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="last-name">Last Name</label>
+                                <input id="last-name" name="entry.1314266813" type="text" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="email-address">Email Address</label>
+                                <input id="email-address" name="entry.904923101" type="email" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="phone-number">Phone Number</label>
+                                <input id="phone-number" name="entry.1166974658" type="tel">
+                            </div>
+                            <button type="button" id="btn-next" class="registration-submit">NEXT</button>
+                        </div>
+                        <div id="step-payment" class="form-step form-step--hidden">
+                            <h2>Donate</h2>
+                            <p class="registration-helper-text">This is a donation-based event. Any contribution is appreciated but entirely optional.</p>
+                            <div class="donate-embed">
+                                <stripe-buy-button
+                                    buy-button-id="buy_btn_1T6vnZ1PaqnW0Qp27m2Vp4jC"
+                                    publishable-key="pk_test_51SHHwt1PaqnW0Qp21k4IKWv2nGVV0DKJY2BlBRTzmW9VScjfzc6W3lzyzzbopNpDhXwHsfsOlrJcPawn6UtkCSlv00lT5uSjnZ"
+                                >
+                                </stripe-buy-button>
+                                <p class="donate-embed-subtext">Entirely optional</p>
+                            </div>
+                            <button type="button" id="btn-skip" class="registration-submit registration-submit--secondary">SKIP & FINISH</button>
+                        </div>
+                    </form>
+                    <div id="step-confirmation" class="form-step form-step--hidden step-confirmation">
+                        <h2>Thank You</h2>
+                        <p class="registration-helper-text">We've received your info and look forward to seeing you in April. Keep an eye on your inbox for details to come.</p>
+                        <a class="registration-submit" href="index.html">BACK TO HOME</a>
+                    </div>
+                    <p id="registration-message" class="registration-message" aria-live="polite"></p>
+                    <iframe name="hidden_iframe" title="hidden registration target" class="hidden-iframe"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const registrationForm = document.getElementById('registration-form');
+        const emailInput = document.getElementById('email-address');
+        const registrationMessage = document.getElementById('registration-message');
+        const googleEmailAddressInput = document.getElementById('google-email-address');
+        const donatedField = document.getElementById('donated-field');
+        const hiddenIframe = document.querySelector('iframe[name="hidden_iframe"]');
+        const stepDetails = document.getElementById('step-details');
+        const stepPayment = document.getElementById('step-payment');
+        const stepConfirmation = document.getElementById('step-confirmation');
+        const btnNext = document.getElementById('btn-next');
+        const btnSkip = document.getElementById('btn-skip');
+        const stepDots = document.querySelectorAll('.step-dot');
+        const steps = [stepDetails, stepPayment, stepConfirmation];
+        let isAwaitingSubmitResult = false;
+        let pendingSubmitTimer = null;
+
+        function showStep(/** @type {number} */ stepIndex) {
+            steps.forEach(function (step, i) {
+                step.classList.toggle('form-step--hidden', i !== stepIndex);
+            });
+            if (stepIndex === 2) {
+                registrationForm.classList.add('form-step--hidden');
+            } else {
+                registrationForm.classList.remove('form-step--hidden');
+            }
+            stepDots.forEach(function (dot, i) {
+                dot.classList.toggle('step-dot--active', i <= stepIndex);
+            });
+            registrationMessage.textContent = '';
+            registrationMessage.className = 'registration-message';
+        }
+
+        function getSubmittedEmails() {
+            try {
+                return JSON.parse(localStorage.getItem('submitted_emails') || '[]');
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function markEmailSubmitted(/** @type {string} */ email) {
+            var /** @type {Array<string>} */ emails = getSubmittedEmails();
+            emails.push(email.toLowerCase());
+            localStorage.setItem('submitted_emails', JSON.stringify(emails));
+        }
+
+        function savePendingRegistration() {
+            var /** @type {Object} */ data = {
+                firstName: document.getElementById('first-name').value,
+                lastName: document.getElementById('last-name').value,
+                email: emailInput.value.trim(),
+                phone: document.getElementById('phone-number').value
+            };
+            localStorage.setItem('pending_registration', JSON.stringify(data));
+        }
+
+        function restorePendingRegistration() {
+            try {
+                var /** @type {Object|null} */ data = JSON.parse(localStorage.getItem('pending_registration'));
+                if (!data || !data.email) return false;
+                document.getElementById('first-name').value = data.firstName;
+                document.getElementById('last-name').value = data.lastName;
+                emailInput.value = data.email;
+                document.getElementById('phone-number').value = data.phone;
+                googleEmailAddressInput.value = data.email;
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }
+
+        function submitWithDonationStatus(/** @type {string} */ donated) {
+            donatedField.value = donated;
+            isAwaitingSubmitResult = true;
+            window.clearTimeout(pendingSubmitTimer);
+            registrationMessage.textContent = 'Submitting...';
+            registrationMessage.className = 'registration-message';
+            registrationForm.submit();
+            pendingSubmitTimer = window.setTimeout(function () {
+                if (!isAwaitingSubmitResult) return;
+                isAwaitingSubmitResult = false;
+                registrationMessage.textContent = 'We could not confirm your submission. Please try again.';
+                registrationMessage.className = 'registration-message error';
+            }, 8000);
+        }
+
+        btnNext.addEventListener('click', function () {
+            var /** @type {Array<HTMLInputElement>} */ fields = Array.from(stepDetails.querySelectorAll('input[required]'));
+            for (var /** @type {number} */ i = 0; i < fields.length; i++) {
+                if (!fields[i].checkValidity()) {
+                    fields[i].reportValidity();
+                    return;
+                }
+            }
+            var /** @type {string} */ trimmedEmail = emailInput.value.trim();
+            if (trimmedEmail.length === 0) {
+                emailInput.reportValidity();
+                return;
+            }
+            if (getSubmittedEmails().indexOf(trimmedEmail.toLowerCase()) !== -1) {
+                showStep(2);
+                return;
+            }
+            savePendingRegistration();
+            showStep(1);
+        });
+
+        btnSkip.addEventListener('click', function () {
+            restorePendingRegistration();
+            submitWithDonationStatus('No');
+        });
+
+        hiddenIframe.addEventListener('load', function () {
+            if (!isAwaitingSubmitResult) return;
+            isAwaitingSubmitResult = false;
+            window.clearTimeout(pendingSubmitTimer);
+            markEmailSubmitted(emailInput.value.trim());
+            localStorage.removeItem('pending_registration');
+            registrationForm.reset();
+            showStep(2);
+        });
+
+        (function () {
+            var /** @type {URLSearchParams} */ params = new URLSearchParams(window.location.search);
+            if (params.has('donated')) {
+                window.history.replaceState({}, '', window.location.pathname);
+                if (restorePendingRegistration()) {
+                    submitWithDonationStatus('Yes');
+                } else {
+                    showStep(2);
+                }
+            }
+        })();
+    </script>
 </body>
 </html>

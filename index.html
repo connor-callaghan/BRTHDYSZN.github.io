@@ -3,109 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>30th Birthday Party</title>
+    <title>BRTHDYSZN</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="snap-site">
+    <header class="site-header">
+        <nav class="site-nav">
+            <a class="site-nav-link site-nav-link--active" href="index.html">Home</a>
+            <a class="site-nav-link" href="registration.html">Register</a>
+        </nav>
+    </header>
     <main class="snap-container">
         <section id="home" class="snap-panel hero-panel">
             <div class="hero-brand">
-                <p class="hero-brand-text">name, name, name and name's</p>
+                <p class="hero-brand-text">BRTHDYSZN</p>
             </div>
             <div class="hero-layout">
                 <div class="hero-title-wrap">
-                    <h1 class="hero-display-title">30th Birthday</h1>
+                    <h1 class="hero-display-title">BRTHDYSZN 2026</h1>
                 </div>
                 <div class="hero-content-wrap">
                     <div class="hero-dot-grid" aria-hidden="true"></div>
-                    <p class="hero-date">May 2nd, 2026</p>
+                    <p class="hero-date">April 25th, 2026</p>
                 </div>
             </div>
-        </section>
-
-        <section id="register" class="snap-panel registration-panel">
-            <div class="registration-layout">
-                <div class="registration-intro">
-                    <h2 class="registration-display-title">EVENT REGISTRATION</h2>
-                    <p class="registration-intro-text">Enter your contact details below so we can contact you with the location and other event details closer to the date.</p>
-                    <a class="registration-outline-link" href="#home">BACK TO TOP</a>
-                </div>
-                <div class="registration-card">
-                    <h2>Register</h2>
-                    <p class="registration-helper-text">Fill out the form below to lock in your seat.</p>
-                    <form id="registration-form" class="registration-form" action="https://docs.google.com/forms/d/e/1FAIpQLScUS_Hb3W0_gZkwmhb2JpAQEoRyXeSAfsURMI72lQWbX5JDjg/formResponse" method="POST" target="hidden_iframe">
-                        <input id="google-email-address" name="emailAddress" type="hidden">
-                        <input name="fvv" type="hidden" value="1">
-                        <input name="pageHistory" type="hidden" value="0">
-                        <div class="form-field">
-                            <label for="first-name">First Name</label>
-                            <input id="first-name" name="entry.2005620554" type="text" required>
-                        </div>
-                        <div class="form-field">
-                            <label for="last-name">Last Name</label>
-                            <input id="last-name" name="entry.1314266813" type="text" required>
-                        </div>
-                        <div class="form-field">
-                            <label for="email-address">Email Address</label>
-                            <input id="email-address" name="entry.904923101" type="email" required>
-                        </div>
-                        <div class="form-field">
-                            <label for="phone-number">Phone Number</label>
-                            <input id="phone-number" name="entry.1166974658" type="tel">
-                        </div>
-                        <button type="submit" class="registration-submit">SUBMIT REGISTRATION</button>
-                    </form>
-                    <p id="registration-message" class="registration-message" aria-live="polite"></p>
-                    <iframe name="hidden_iframe" title="hidden registration target" class="hidden-iframe"></iframe>
-                </div>
-            </div>
+            <a class="hero-outline-link hero-register-cta" href="registration.html">Register Here</a>
         </section>
     </main>
-
-    <script>
-        const registrationForm = document.getElementById('registration-form');
-        const emailInput = document.getElementById('email-address');
-        const registrationMessage = document.getElementById('registration-message');
-        const googleEmailAddressInput = document.getElementById('google-email-address');
-        const hiddenIframe = document.querySelector('iframe[name="hidden_iframe"]');
-        let isAwaitingSubmitResult = false;
-        let pendingSubmitTimer = null;
-
-        registrationForm.addEventListener('submit', function (event) {
-            const hasEmail = emailInput.value.trim().length > 0;
-            if (!hasEmail) {
-                event.preventDefault();
-                registrationMessage.textContent = 'Please provide an email address.';
-                registrationMessage.className = 'registration-message error';
-                return;
-            }
-            googleEmailAddressInput.value = emailInput.value.trim();
-            isAwaitingSubmitResult = true;
-            window.clearTimeout(pendingSubmitTimer);
-            registrationMessage.textContent = 'Submitting...';
-            registrationMessage.className = 'registration-message';
-            pendingSubmitTimer = window.setTimeout(function () {
-                if (!isAwaitingSubmitResult) {
-                    return;
-                }
-                isAwaitingSubmitResult = false;
-                registrationMessage.textContent = 'We could not confirm your submission. Please try again.';
-                registrationMessage.className = 'registration-message error';
-            }, 8000);
-        });
-
-        hiddenIframe.addEventListener('load', function () {
-            if (!isAwaitingSubmitResult) {
-                return;
-            }
-            isAwaitingSubmitResult = false;
-            window.clearTimeout(pendingSubmitTimer);
-            registrationMessage.textContent = 'Registration submitted. Thank you!';
-            registrationMessage.className = 'registration-message success';
-            window.setTimeout(function () {
-                registrationForm.reset();
-            }, 300);
-        });
-    </script>
 </body>
 </html>
