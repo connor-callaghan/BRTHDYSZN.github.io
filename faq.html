@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="site-nav">
+            <a class="site-nav-link" href="index.html">Home</a>
+            <a class="site-nav-link" href="registration.html">Register</a>
+            <a class="site-nav-link site-nav-link--active" href="faq.html">FAQ</a>
+        </nav>
+    </header>
+    <main>
+        <section class="hero-panel faq-hero">
+            <div class="hero-brand">
+                <p class="hero-brand-text">BRTHDYSZN</p>
+            </div>
+            <div class="hero-layout">
+                <div class="hero-title-wrap">
+                    <h1 class="hero-display-title">FAQ</h1>
+                    <p class="hero-description">Frequently asked questions about the event.</p>
+                </div>
+                <div class="hero-content-wrap">
+                    <div class="hero-dot-grid" aria-hidden="true"></div>
+                    <p class="hero-date">April 25th, 2026</p>
+                </div>
+            </div>
+            <div class="hero-cta-group">
+                <a class="hero-outline-link hero-register-cta" href="registration.html">Register</a>
+                <a class="hero-outline-link hero-register-cta hero-register-cta--secondary" href="#contact">Contact</a>
+            </div>
+        </section>
+
+        <section class="faq-panel" id="faq">
+            <div class="faq-layout">
+                <div class="faq-intro">
+                    <p class="faq-kicker">Event details</p>
+                    <h2 class="faq-title">FAQ</h2>
+                    <p class="faq-intro-text">Quick answers about BRTHDYSZN 2026.</p>
+                </div>
+                <div class="faq-list">
+                    <article class="faq-item">
+                        <h3>Where do payments go?</h3>
+                        <p>All payments go toward the cost of throwing the event, including the core production expenses that make the night possible.</p>
+                    </article>
+                    <article class="faq-item">
+                        <h3>When is the event?</h3>
+                        <p>The event will be on April 25th, 2026.</p>
+                    </article>
+                    <article class="faq-item">
+                        <h3>Where is the event?</h3>
+                        <p>We will send the location to the email you entered on the registration form.</p>
+                    </article>
+                    <article class="faq-item">
+                        <h3>How are payments collected?</h3>
+                        <p>Payments are collected securely through Stripe, a trusted payment service.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-panel" id="contact">
+            <div class="contact-layout">
+                <div class="registration-card contact-card">
+                    <h2>Contact Us</h2>
+                    <p class="registration-helper-text">Send us a note and we will get back to you.</p>
+                    <form class="contact-form" action="mailto:connor.callaghan+brthdyszn@gmail.com" method="POST" enctype="text/plain">
+                        <div class="form-field">
+                            <label for="contact-name">Name</label>
+                            <input id="contact-name" name="name" type="text" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="contact-email">Email</label>
+                            <input id="contact-email" name="email" type="email" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="contact-message">Message</label>
+                            <textarea id="contact-message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button class="registration-submit" type="submit">Send Message</button>
+                        <p class="contact-note">This opens your default email app to send the message.</p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

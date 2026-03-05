@@ -156,6 +156,19 @@ body {
     letter-spacing: 0.18em;
 }
 
+.hero-register-cta--secondary {
+    border-color: #5b606a;
+    color: #aeb2bb;
+}
+
+.hero-cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.2rem;
+}
+
 .hero-socials {
     display: flex;
     gap: 0.8rem;
@@ -197,6 +210,142 @@ body {
     min-height: 100vh;
     padding-top: 6rem;
     align-items: flex-start;
+}
+
+.faq-panel {
+    min-height: 100vh;
+    padding: 6rem 2rem 3rem;
+    background: #101216;
+    display: flex;
+    align-items: flex-start;
+}
+
+.faq-layout {
+    width: min(1100px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(260px, 0.9fr) minmax(320px, 1.1fr);
+    gap: 2.5rem;
+    align-items: start;
+}
+
+.faq-intro {
+    position: relative;
+}
+
+.faq-intro::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -1.4rem;
+    width: min(220px, 42vw);
+    height: min(220px, 42vw);
+    background-image: radial-gradient(circle, rgba(229,231,235,0.6) 1.2px, transparent 1.2px);
+    background-size: 14px 14px;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.faq-kicker {
+    font-size: 0.76rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #9298a4;
+    margin-bottom: 1.1rem;
+}
+
+.faq-title {
+    font-size: clamp(2.6rem, 6vw, 4.6rem);
+    line-height: 0.95;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: transparent;
+    -webkit-text-stroke: 1px #bcc0c8;
+    margin-bottom: 1rem;
+}
+
+.faq-intro-text {
+    color: #a8adb7;
+    line-height: 1.6;
+    max-width: 440px;
+    margin-bottom: 1.6rem;
+}
+
+.faq-list {
+    display: grid;
+    gap: 1.2rem;
+}
+
+.faq-item {
+    background: #181b21;
+    border: 1px solid #2a2e36;
+    padding: 1.4rem 1.5rem;
+}
+
+.faq-item h2,
+.faq-item h3 {
+    color: #f3f4f6;
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+}
+
+.faq-item p {
+    color: #a8adb7;
+    line-height: 1.6;
+}
+
+.faq-link {
+    color: #d8dbe1;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(216, 219, 225, 0.4);
+    transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.faq-link:hover {
+    color: #f3f4f6;
+    border-color: #f3f4f6;
+}
+
+.donate-panel {
+    background: #121418;
+    padding: 3.5rem 2rem 4rem;
+    scroll-margin-top: 6rem;
+}
+
+.donate-layout {
+    width: min(900px, 100%);
+    margin: 0 auto;
+}
+
+.donate-card {
+    display: grid;
+    gap: 0.9rem;
+}
+
+.contact-panel {
+    background: #101216;
+    padding: 3.5rem 2rem 5rem;
+    scroll-margin-top: 6rem;
+}
+
+.contact-layout {
+    width: min(900px, 100%);
+    margin: 0 auto;
+}
+
+.contact-card {
+    display: grid;
+    gap: 0.9rem;
+}
+
+.contact-form {
+    display: grid;
+    gap: 0.9rem;
+}
+
+.contact-note {
+    color: #7f8591;
+    font-size: 0.82rem;
 }
 
 .registration-layout {
@@ -349,9 +498,26 @@ body {
     color: #f3f4f6;
     padding: 0.7rem 0.78rem;
     font-size: 0.95rem;
+    font-family: inherit;
+}
+
+.form-field textarea {
+    background: #101216;
+    border: 1px solid #363b44;
+    color: #f3f4f6;
+    padding: 0.7rem 0.78rem;
+    font-size: 0.95rem;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 140px;
 }
 
 .form-field input:focus {
+    outline: none;
+    border-color: #aeb2bb;
+}
+
+.form-field textarea:focus {
     outline: none;
     border-color: #aeb2bb;
 }
@@ -381,7 +547,8 @@ body {
 
 @media (max-width: 980px) {
     .hero-layout,
-    .registration-layout {
+    .registration-layout,
+    .faq-layout {
         grid-template-columns: 1fr;
     }
 
@@ -399,12 +566,28 @@ body {
         padding: 1.4rem 1.2rem;
     }
 
+    .faq-panel {
+        padding: 5rem 1.2rem 2.2rem;
+    }
+
+    .donate-panel {
+        padding: 3rem 1.2rem 3.2rem;
+    }
+
+    .contact-panel {
+        padding: 3rem 1.2rem 3.6rem;
+    }
+
     .hero-display-title {
         font-size: clamp(2.5rem, 15vw, 4.1rem);
     }
 
     .registration-display-title {
         font-size: clamp(2rem, 13vw, 3.5rem);
+    }
+
+    .faq-title {
+        font-size: clamp(2.1rem, 12vw, 3.4rem);
     }
 
     .hero-dot-grid {

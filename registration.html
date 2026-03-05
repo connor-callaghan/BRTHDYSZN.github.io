@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - 30th Birthday Party</title>
+    <title>Register</title>
     <link rel="stylesheet" href="styles.css">
     <script async src="https://js.stripe.com/v3/buy-button.js"></script>
 </head>
@@ -12,6 +12,7 @@
         <nav class="site-nav">
             <a class="site-nav-link" href="index.html">Home</a>
             <a class="site-nav-link site-nav-link--active" href="registration.html">Register</a>
+            <a class="site-nav-link" href="faq.html">FAQ</a>
         </nav>
     </header>
     <main>
@@ -19,7 +20,6 @@
             <div class="registration-layout">
                 <div class="registration-intro">
                     <h2 class="registration-display-title">EVENT REGISTRATION</h2>
-                    <p class="registration-intro-text">Enter your contact details below so we can contact you with the location and other event details closer to the date.</p>
                     <a class="registration-outline-link" href="index.html">BACK TO HOME</a>
                 </div>
                 <div class="registration-card">
@@ -35,7 +35,7 @@
                         <input name="pageHistory" type="hidden" value="0">
                         <div id="step-details" class="form-step">
                             <h2>Register</h2>
-                            <p class="registration-helper-text">Fill out the form below to lock in your seat.</p>
+                            <p class="registration-helper-text">Enter your contact details below so we can contact you with the location and other event details closer to the date.</p>
                             <div class="form-field">
                                 <label for="first-name">First Name</label>
                                 <input id="first-name" name="entry.2005620554" type="text" required>
@@ -60,7 +60,7 @@
                             <div class="donate-embed">
                                 <stripe-buy-button
                                     buy-button-id="buy_btn_1T6vnZ1PaqnW0Qp27m2Vp4jC"
-                                    publishable-key="pk_test_51SHHwt1PaqnW0Qp21k4IKWv2nGVV0DKJY2BlBRTzmW9VScjfzc6W3lzyzzbopNpDhXwHsfsOlrJcPawn6UtkCSlv00lT5uSjnZ"
+                                    publishable-key="pk_live_51SHHwk09TyFaC8EGb9ISzIZXmbmZK5amYfhr96LmaxQmFhvGsZ6iNF01ycshouH8IQzrMRjikGXaLdzWMP8YxhhP002oWNCd0o"
                                 >
                                 </stripe-buy-button>
                                 <p class="donate-embed-subtext">Entirely optional</p>
