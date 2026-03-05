@@ -60,11 +60,15 @@
                             <h2>Donate</h2>
                             <p class="registration-helper-text">This is a donation-based event. Any contribution is appreciated but entirely optional.</p>
                             <div class="donate-embed">
-                                <stripe-buy-button
-                                    buy-button-id="buy_btn_1T6vnZ1PaqnW0Qp27m2Vp4jC"
-                                    publishable-key="pk_live_51SHHwk09TyFaC8EGb9ISzIZXmbmZK5amYfhr96LmaxQmFhvGsZ6iNF01ycshouH8IQzrMRjikGXaLdzWMP8YxhhP002oWNCd0o"
-                                >
-                                </stripe-buy-button>
+                                <script async
+                                src="https://js.stripe.com/v3/buy-button.js">
+                              </script>
+                              
+                              <stripe-buy-button
+                                buy-button-id="buy_btn_1T7Sou09TyFaC8EGiiGV3Wx8"
+                                publishable-key="pk_live_51SHHwk09TyFaC8EGb9ISzIZXmbmZK5amYfhr96LmaxQmFhvGsZ6iNF01ycshouH8IQzrMRjikGXaLdzWMP8YxhhP002oWNCd0o"
+                              >
+                              </stripe-buy-button>
                                 <p class="donate-embed-subtext">Entirely optional</p>
                             </div>
                             <button type="button" id="btn-skip" class="registration-submit registration-submit--secondary">SKIP & FINISH</button>

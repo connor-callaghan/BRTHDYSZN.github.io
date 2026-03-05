@@ -24,12 +24,20 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.site-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    bottom: -2rem;
     background: rgba(16, 18, 22, 0.65);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     mask-image: linear-gradient(to bottom, black 25%, transparent 100%);
     -webkit-mask-image: linear-gradient(to bottom, black 25%, transparent 100%);
-    padding-bottom: 3rem;
+    z-index: -1;
+    pointer-events: none;
 }
 
 .site-nav {
